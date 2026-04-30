@@ -98,7 +98,23 @@ jobs:
         run: cmake --build build -j --config Release
 
       - name: Install
-        run: cmake --install build --config Release
+        run: |
+          cmake --install build --config Release
+          cmake --install build --config Release --component portable
+
+      - name: Strip user data (safety)
+        shell: bash
+        run: |
+          find install -type f \( \
+            -name "accounts.json" -o \
+            -name "*.cfg" -prune -o \
+            -name "launcher.cfg" -o \
+            -name "prismlauncher.cfg" -o \
+            -name "instance.cfg" \
+          \) -delete 2>/dev/null || true
+          rm -rf install/{instances,metacache,cache,logs,iconthemes,catpacks,skins,assets/objects,libraries,java}
+          # keep portable.txt + qtlogging.ini
+          true
 
       - name: Deploy Qt (Linux)
         if: runner.os == 'Linux'
