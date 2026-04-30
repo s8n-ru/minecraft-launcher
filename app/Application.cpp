@@ -807,25 +807,20 @@ Application::Application(int& argc, char** argv) : QApplication(argc, argv)
 
         // Window state and geometry
         m_settings->registerSetting("MainWindowState", "");
-        m_settings->registerSetting("MainWindowGeometry",
-                                    "AdnQywADAAAAAAcIAAAAAAAACGIAAAEJAAAHCAAAAAAAAAhiAAABCQAAAAAAAAAAB4AAAAcIAAAAAAAACGIAAAEJ");
+        m_settings->registerSetting("MainWindowGeometry", "");
 
         m_settings->registerSetting("ConsoleWindowState", "");
-        m_settings->registerSetting("ConsoleWindowGeometry",
-                                    "AdnQywADAAAAAAcIAAAAAAAAChYAAALBAAAHCAAAAAAAAAoWAAACwQAAAAAAAAAAB4AAAAcIAAAAAAAAChYAAALB");
+        m_settings->registerSetting("ConsoleWindowGeometry", "");
 
         m_settings->registerSetting("SettingsGeometry", "");
 
-        m_settings->registerSetting("PagedGeometry",
-                                    "AdnQywADAAAAAAcIAAAAAAAACm8AAAKJAAAHCAAAAAAAAApvAAACiQAAAAAAAAAAB4AAAAcIAAAAAAAACm8AAAKJ");
+        m_settings->registerSetting("PagedGeometry", "");
 
-        m_settings->registerSetting("NewInstanceGeometry",
-                                    "AdnQywADAAAAAAcIAAAAAAAAC2AAAAH7AAAHCAAAAAAAAAtgAAAB+wAAAAAAAAAAB4AAAAcIAAAAAAAAC2AAAAH7");
+        m_settings->registerSetting("NewInstanceGeometry", "");
 
         m_settings->registerSetting("UpdateDialogGeometry", "");
 
-        m_settings->registerSetting("NewsGeometry",
-                                    "AdnQywADAAAAAAcIAAAAAAAACicAAAHzAAAHCAAAAAAAAAonAAAB8wAAAAAAAAAAB4AAAAcIAAAAAAAACicAAAHz");
+        m_settings->registerSetting("NewsGeometry", "");
 
         m_settings->registerSetting("ModDownloadGeometry", "");
         m_settings->registerSetting("RPDownloadGeometry", "");
@@ -1675,7 +1670,10 @@ MainWindow* Application::showMainWindow(bool minimized)
     } else {
         m_mainWindow = new MainWindow();
         m_mainWindow->restoreState(QByteArray::fromBase64(APPLICATION->settings()->get("MainWindowState").toString().toUtf8()));
-        m_mainWindow->restoreGeometry(QByteArray::fromBase64(APPLICATION->settings()->get("MainWindowGeometry").toString().toUtf8()));
+        QString geomStr = APPLICATION->settings()->get("MainWindowGeometry").toString();
+        if (geomStr.isEmpty() || !m_mainWindow->restoreGeometry(QByteArray::fromBase64(geomStr.toUtf8()))) {
+            m_mainWindow->resize(700, 500);
+        }
 
         if (auto* newsBar = m_mainWindow->findChild<QToolBar*>("newsToolBar")) {
             newsBar->hide();

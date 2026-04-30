@@ -100,6 +100,24 @@ jobs:
       - name: Install
         run: cmake --install build --config Release
 
+      - name: Deploy Qt (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          # Bundle Qt libs alongside the binary for portability
+          mkdir -p install/lib
+          ldd install/bin/launcher | awk '/Qt6/ {print $3}' | xargs -I {} cp -L {} install/lib/ || true
+
+      - name: Deploy Qt (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          windeployqt --release --no-translations install\launcher.exe
+
+      - name: Deploy Qt (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          macdeployqt install/Launcher.app -always-overwrite || true
+
       # ---------- Package ----------
       - name: Package (Linux)
         if: runner.os == 'Linux'

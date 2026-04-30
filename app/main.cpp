@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
             Q_INIT_RESOURCE(flat_white);
             Q_INIT_RESOURCE(backgrounds);
             Q_INIT_RESOURCE(documents);
-            Q_INIT_RESOURCE(prismlauncher);
+            Q_INIT_RESOURCE(launcher);
             Q_INIT_RESOURCE(racked_ru);
             Q_INIT_RESOURCE(shaders);
             return app.exec();

@@ -157,6 +157,21 @@ void ThemeManager::initializeWidgets()
         themeWarningLog() << "Couldn't create theme folder";
     themeDebugLog() << "Theme Folder Path:" << m_applicationThemeFolder.absolutePath();
 
+    // Auto-deploy bundled racked.ru theme on first run
+    {
+        QDir rackedDir(m_applicationThemeFolder.absoluteFilePath("racked.ru"));
+        if (!rackedDir.exists("theme.json")) {
+            rackedDir.mkpath(".");
+            QFile::copy(":/themes/theme.json", rackedDir.absoluteFilePath("theme.json"));
+            QFile::copy(":/themes/themeStyle.css", rackedDir.absoluteFilePath("themeStyle.css"));
+            QFile::setPermissions(rackedDir.absoluteFilePath("theme.json"),
+                                  QFile::ReadOwner | QFile::WriteOwner | QFile::ReadGroup | QFile::ReadOther);
+            QFile::setPermissions(rackedDir.absoluteFilePath("themeStyle.css"),
+                                  QFile::ReadOwner | QFile::WriteOwner | QFile::ReadGroup | QFile::ReadOther);
+            themeDebugLog() << "Auto-deployed racked.ru theme to" << rackedDir.absolutePath();
+        }
+    }
+
     QDirIterator directoryIterator(m_applicationThemeFolder.path(), QDir::Dirs | QDir::NoDotAndDotDot);
     while (directoryIterator.hasNext()) {
         QDir dir(directoryIterator.next());
