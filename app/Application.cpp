@@ -754,6 +754,26 @@ Application::Application(int& argc, char** argv) : QApplication(argc, argv)
         m_settings->registerSetting("AutomaticJavaDownload", defaultEnableAutoJava);
         m_settings->registerSetting("UserAskedAboutAutomaticJavaDownload", false);
 
+        // Auto-detect portable JDK in <launcher_root>/java/jdk-*/bin/java(.exe)
+        if (m_settings->get("JavaPath").toString().isEmpty()) {
+            QDir javaDir(FS::PathCombine(m_rootPath, m_settings->get("JavaDir").toString()));
+            if (javaDir.exists()) {
+                const QStringList jdks = javaDir.entryList({ "jdk-*", "jre-*" }, QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::Reversed);
+                for (const QString& jdk : jdks) {
+#ifdef Q_OS_WIN
+                    QString candidate = FS::PathCombine(javaDir.absoluteFilePath(jdk), "bin", "java.exe");
+#else
+                    QString candidate = FS::PathCombine(javaDir.absoluteFilePath(jdk), "bin", "java");
+#endif
+                    if (QFileInfo(candidate).isExecutable()) {
+                        qDebug() << "Auto-detected portable JDK:" << candidate;
+                        m_settings->set("JavaPath", candidate);
+                        break;
+                    }
+                }
+            }
+        }
+
         // Legacy settings
         m_settings->registerSetting("OnlineFixes", false);
 
