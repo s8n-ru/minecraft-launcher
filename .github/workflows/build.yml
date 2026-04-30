@@ -1,0 +1,145 @@
+name: Build
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            name: linux-x64
+            archive: tar.gz
+          - os: windows-latest
+            name: windows-x64
+            archive: zip
+          - os: macos-14
+            name: macos-arm64
+            archive: zip
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Qt 6
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.7.2'
+          modules: 'qt5compat qtimageformats qtnetworkauth'
+          cache: true
+
+      # ---------- Linux ----------
+      - name: Linux deps
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            extra-cmake-modules \
+            libarchive-dev \
+            libqrencode-dev \
+            libtomlplusplus-dev \
+            libvulkan-dev \
+            gamemode-dev \
+            zlib1g-dev \
+            libgl1-mesa-dev \
+            ninja-build \
+            scdoc
+
+      - name: Build cmark from source (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          git clone --depth=1 --branch 0.31.0 https://github.com/commonmark/cmark.git /tmp/cmark
+          cmake -B /tmp/cmark/build -S /tmp/cmark -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DCMARK_TESTS=OFF
+          sudo cmake --build /tmp/cmark/build -j --target install
+
+      # ---------- macOS ----------
+      - name: macOS deps
+        if: runner.os == 'macOS'
+        run: |
+          brew install \
+            extra-cmake-modules \
+            cmark \
+            libarchive \
+            qrencode \
+            tomlplusplus \
+            ninja
+          echo "PKG_CONFIG_PATH=$(brew --prefix libarchive)/lib/pkgconfig" >> $GITHUB_ENV
+          echo "LibArchive_ROOT=$(brew --prefix libarchive)" >> $GITHUB_ENV
+
+      # ---------- Windows ----------
+      - name: Windows — set up vcpkg
+        if: runner.os == 'Windows'
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '2d6a6cf3ac9a7cc93942c3d289a2f9c661a6f4a7'
+
+      # ---------- Configure / Build ----------
+      - name: Configure (Linux/macOS)
+        if: runner.os != 'Windows'
+        run: cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install -DLauncher_BUILD_PLATFORM=racked-portable -DBUILD_TESTING=OFF
+
+      - name: Configure (Windows)
+        if: runner.os == 'Windows'
+        run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install -DLauncher_BUILD_PLATFORM=racked-portable -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+
+      - name: Build
+        run: cmake --build build -j --config Release
+
+      - name: Install
+        run: cmake --install build --config Release
+
+      # ---------- Package ----------
+      - name: Package (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          mv install minecraft-launcher
+          tar czf minecraft-launcher-${{ matrix.name }}.tar.gz minecraft-launcher
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Move-Item install minecraft-launcher
+          Compress-Archive -Path minecraft-launcher -DestinationPath minecraft-launcher-${{ matrix.name }}.zip
+
+      - name: Package (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          mv install minecraft-launcher
+          zip -r minecraft-launcher-${{ matrix.name }}.zip minecraft-launcher
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: minecraft-launcher-${{ matrix.name }}
+          path: minecraft-launcher-${{ matrix.name }}.${{ matrix.archive }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/*
+          generate_release_notes: true
