@@ -88,11 +88,11 @@ jobs:
       # ---------- Configure / Build ----------
       - name: Configure (Linux/macOS)
         if: runner.os != 'Windows'
-        run: cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install -DLauncher_BUILD_PLATFORM=racked-portable -DBUILD_TESTING=OFF
+        run: cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install -DLauncher_BUILD_PLATFORM=racked-portable -DBUILD_TESTING=OFF -DLauncher_ENABLE_JAVA_DOWNLOADER=ON
 
       - name: Configure (Windows)
         if: runner.os == 'Windows'
-        run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install -DLauncher_BUILD_PLATFORM=racked-portable -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install -DLauncher_BUILD_PLATFORM=racked-portable -DBUILD_TESTING=OFF -DLauncher_ENABLE_JAVA_DOWNLOADER=ON -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake"
 
       - name: Build
         run: cmake --build build -j --config Release
