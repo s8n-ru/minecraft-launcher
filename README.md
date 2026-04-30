@@ -2,9 +2,6 @@
 
 # minecraft-launcher
 
-**Privacy-first Minecraft launcher.**
-No telemetry. No Microsoft account requirement. Runs smooth on hardware that stock Minecraft chokes on.
-
 [![Linux](https://img.shields.io/badge/Linux-x64-black?style=flat-square&logo=linux&logoColor=white)](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
 [![Windows](https://img.shields.io/badge/Windows-x64-black?style=flat-square&logo=windows&logoColor=white)](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
 [![macOS](https://img.shields.io/badge/macOS-arm64-black?style=flat-square&logo=apple&logoColor=white)](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
@@ -18,43 +15,44 @@ No telemetry. No Microsoft account requirement. Runs smooth on hardware that sto
 
 ---
 
-## Why this fork exists
+I wanted a launcher that just played Minecraft. No telemetry, no
+forced Microsoft account, no news feed phoning home before the window
+even renders, no UI clutter from features I'd never touch.
 
-Stock Minecraft phones home. Stock launcher pushes Microsoft accounts. Stock client struggles on low-end machines.
+Prism Launcher came closest. Still wasn't quite there. So this is a
+fork: same core, with the bloat I didn't want stripped out and an
+AMOLED theme because I like that.
 
-This fork fixes all three.
-
-| | Stock launcher | This fork |
-|---|---|---|
-| Telemetry | Yes | None |
-| Microsoft account | Required | Optional, never enforced |
-| News fetch on launch | Yes | Hidden, no startup call |
-| Plays on weak hardware | Often won't | Yes |
-| Window title | Mojang branding | `racked.ru launcher` |
-
-Full diff: [CHANGELOG.md](CHANGELOG.md).
+Opinionated. Built for me. If your taste lines up, help yourself.
 
 ---
 
-## Features
+## What I changed vs upstream
 
-### Privacy
+| | Stock launcher | Prism | This fork |
+|---|---|---|---|
+| Telemetry | Yes | None | None |
+| Microsoft account | Required | Optional | Optional, never nagged |
+| News fetch on launch | Yes | Yes | Hidden, no startup call |
+| Theme | Mojang | Default | Pure AMOLED, monochrome |
+| Branding | Mojang | Prism | `racked.ru launcher` |
+| Plays on weak hardware | Often won't | Yes | Yes (Java 21 bundled) |
 
-- **No telemetry, anywhere.** Audited every endpoint — see [docs/NETWORK_AUDIT.md](docs/NETWORK_AUDIT.md)
-- **No accounts required.** Pick a username, play offline. Sign in later if you want
-- **No analytics, no tracking.** Doesn't matter who you are
+Full diff in [CHANGELOG.md](CHANGELOG.md). Per-endpoint network audit
+in [docs/NETWORK_AUDIT.md](docs/NETWORK_AUDIT.md).
 
-### Performance
+---
 
-- Tuned for low-end hardware
-- Bundled Java 21 (no system install)
-- Portable — all data in one folder, USB-friendly
+## What it does
 
-### Functionality
+- Modrinth, CurseForge, FTB, ATLauncher, Technic instance imports
+- Bundled Java 21, no system install needed
+- Portable: one folder, USB-friendly
+- Offline mode: pick a username, play. Microsoft sign-in only if you
+  actually need premium features
+- Pure black/white theme, no chrome accents
 
-- Modrinth, CurseForge, FTB, ATLauncher, Technic platforms
-- Custom monochrome theme
-- Hide news feed by default — no startup network call
+That's it. Same scope as Prism, just narrower defaults.
 
 ---
 
@@ -85,7 +83,7 @@ cd minecraft-launcher
 ./prismlauncher.app/Contents/MacOS/prismlauncher
 ```
 
-Pick a username on first launch. Done.
+First launch: pick a username, done.
 
 ---
 
@@ -110,27 +108,32 @@ cmake --build build -j$(nproc)
 ./build/prismlauncher
 ```
 
-CI builds via [GitHub Actions](.github/workflows/build.yml) for all 3 platforms on every tag.
+CI builds via [GitHub Actions](.github/workflows/build.yml) for all 3
+platforms on every tag.
 
 ---
 
 ## Trust
 
-This is open-source. Verify the privacy claims yourself:
+Don't take my word on the privacy stuff. Read the audits:
 
-- [docs/NETWORK_AUDIT.md](docs/NETWORK_AUDIT.md) — every network endpoint listed, telemetry verdict
-- [docs/SETTINGS_AUDIT.md](docs/SETTINGS_AUDIT.md) — default-value diffs vs upstream
-- [docs/BLOAT_AUDIT.md](docs/BLOAT_AUDIT.md) — what was stripped, why
+- [docs/NETWORK_AUDIT.md](docs/NETWORK_AUDIT.md) — every endpoint
+  listed, telemetry verdict per call
+- [docs/SETTINGS_AUDIT.md](docs/SETTINGS_AUDIT.md) — default-value
+  diffs vs upstream
+- [docs/BLOAT_AUDIT.md](docs/BLOAT_AUDIT.md) — what got stripped, why
 
-You don't have to trust me. Read the source.
+It's GPL-3.0. Source is right there.
 
 ---
 
 ## Status
 
-Personal project. No support guarantees. Bugs may bite. Use at own risk.
+Personal project. I use it daily, that's the only QA. No support
+guarantees. Bugs happen. Use at your own risk.
 
-Pull requests welcome but not promised to merge.
+PRs welcome but not promised to merge — this is opinionated by
+design.
 
 ---
 
@@ -138,4 +141,6 @@ Pull requests welcome but not promised to merge.
 
 GPL-3.0-only. Per-file copyright headers preserved.
 
-Based on [PrismLauncher](https://github.com/PrismLauncher/PrismLauncher) (GPL-3.0), itself a fork of [PolyMC](https://github.com/PolyMC/PolyMC) and [MultiMC](https://github.com/MultiMC/Launcher).
+Based on [PrismLauncher](https://github.com/PrismLauncher/PrismLauncher)
+(GPL-3.0), itself a fork of [PolyMC](https://github.com/PolyMC/PolyMC)
+and [MultiMC](https://github.com/MultiMC/Launcher).
