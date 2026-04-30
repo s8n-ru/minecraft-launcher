@@ -23,13 +23,12 @@ I wanted a launcher that just played Minecraft.
 
 ## What I changed vs upstream
 
-| | Stock launcher | Prism | This fork |
-|---|---|---|---|
-| Telemetry | Yes | None | None |
-| Microsoft account | Required | Optional | Optional, never nagged |
-| News fetch on launch | Yes | Yes | Hidden, no startup call |
-| Theme | Ugly | Clutered | AMOLED |
-| Plays on weak hardware | Often won't | Yes | Yes (Java 21 bundled) |
+| | Stock launcher | This fork |
+|---|---|---|
+| Telemetry | Yes | none |
+| News fetch on launch | Yes | none |
+| UI | Ugly | Clean |
+| Weak hardware support | lmao | optimized |
 
 Full diff in [CHANGELOG.md](CHANGELOG.md). Per-endpoint network audit
 in [docs/NETWORK_AUDIT.md](docs/NETWORK_AUDIT.md).
@@ -39,10 +38,9 @@ in [docs/NETWORK_AUDIT.md](docs/NETWORK_AUDIT.md).
 ## What it does
 
 - Modrinth, CurseForge, FTB, ATLauncher, Technic instance imports
-- Bundled Java 21, no system install needed
-- Portable: one folder, USB-friendly
-- Offline mode: pick a username, play. Microsoft sign-in only if you
-  actually need premium features
+- Fetches Java, no system install needed (hassle)
+- Portable: can launch from a usb stick for example
+- Offline mode: pick a username, play.
 - Pure black/white theme, no chrome accents
 
 That's it. Same scope as Prism, just narrower defaults.
