@@ -15,15 +15,9 @@
 
 ---
 
-I wanted a launcher that just played Minecraft. No telemetry, no
-forced Microsoft account, no news feed phoning home before the window
-even renders, no UI clutter from features I'd never touch.
+An Opinionated Launcher. Built for myself, If your its to your taste, help yourself.
 
-Prism Launcher came closest. Still wasn't quite there. So this is a
-fork: same core, with the bloat I didn't want stripped out and an
-AMOLED theme because I like that.
-
-Opinionated. Built for me. If your taste lines up, help yourself.
+I wanted a launcher that just played Minecraft. 
 
 ---
 
@@ -34,8 +28,7 @@ Opinionated. Built for me. If your taste lines up, help yourself.
 | Telemetry | Yes | None | None |
 | Microsoft account | Required | Optional | Optional, never nagged |
 | News fetch on launch | Yes | Yes | Hidden, no startup call |
-| Theme | Mojang | Default | Pure AMOLED, monochrome |
-| Branding | Mojang | Prism | `racked.ru launcher` |
+| Theme | Ugly | Clutered | AMOLED |
 | Plays on weak hardware | Often won't | Yes | Yes (Java 21 bundled) |
 
 Full diff in [CHANGELOG.md](CHANGELOG.md). Per-endpoint network audit
