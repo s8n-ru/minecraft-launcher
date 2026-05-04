@@ -3,9 +3,9 @@
 
 set -e
 
-echo "=============================================="
-echo "Building Racked.ru PrismLauncher for Linux"
-echo "=============================================="
+echo "========================================="
+echo "Building Racked.ru Launcher for Linux"
+echo "========================================="
 echo ""
 
 # Navigate to build directory
