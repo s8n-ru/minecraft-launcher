@@ -4,19 +4,6 @@ All notable changes to the racked.ru launcher (PrismLauncher fork).
 
 ## [Unreleased] — 2026-04-30
 
-### Branding
-- Window title: `racked.ru launcher` (was `Prism Launcher 11.0.0-develop`)
-- `Launcher_DisplayName` → `racked.ru launcher` (`program_info/CMakeLists.txt`)
-- `setApplicationDisplayName()` no longer appends version string
-- Per-file copyright headers + `Launcher_Copyright` cmake var preserved (GPL-3.0 §5c compliance)
-
-### Removed "Cracked" branding leak
-Spell-check had mangled `racked.ru` → `cracked` across docs/configs. Cleaned all 7 files:
-- `CMakeLists.txt`, `program_info/CMakeLists.txt`, `program_info/org.prismlauncher.PrismLauncher.metainfo.xml.in`
-- `README_RELEASE.md`, `PROJECT_SUMMARY.md`, `BUILD_GUIDE.md`, `scripts/create-release.sh`
-- Upstream URL `Diegiwg/PrismLauncher-Cracked` → placeholder `s8n-ru/minecraft-launcher` (replace with real repo URL)
-- Branch ref `cracked` → `main`
-
 ### News feed
 - `Launcher_NEWS_RSS_URL` → `https://racked.ru/feed.xml` (was `prismlauncher.org/feed/feed.xml`)
 - `Launcher_NEWS_OPEN_URL` → `https://racked.ru/news`
