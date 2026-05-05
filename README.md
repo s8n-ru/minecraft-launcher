@@ -7,6 +7,7 @@
   <img src="https://img.shields.io/badge/Download-black?style=for-the-badge&logoColor=white&labelColor=black&color=white" height="60" alt="Download latest">
 </a>
 <br><br>
+
 [![Linux](https://img.shields.io/badge/Linux-x64-black?style=flat-square&logo=linux&logoColor=white)](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
 [![Windows](https://img.shields.io/badge/Windows-x64-black?style=flat-square&logo=windows&logoColor=white)](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
 [![macOS](https://img.shields.io/badge/macOS-arm64-black?style=flat-square&logo=apple&logoColor=white)](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
