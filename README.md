@@ -40,8 +40,6 @@ Don't take my word on the privacy stuff. Read the audits:
   diffs vs upstream
 - [docs/BLOAT_AUDIT.md](docs/BLOAT_AUDIT.md) — what got stripped, why
 
-It's GPL-3.0. Source is right there.
-
 ---
 
 ## Status
