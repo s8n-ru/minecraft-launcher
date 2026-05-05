@@ -14,17 +14,17 @@
 
 ---
 
+an opinionated launcher  -  ***my based opinions***
+
+built for myself, If your its to your taste, help yourself.
+
+---
+
 [Changelog](CHANGELOG.md) · [Audits](docs/)
 
 <img alt="racked.ru launcher" src="docs/screenshots/launcher.png" width="55%">
 
 </div>
-
----
-
-an opinionated launcher  -  ***my based opinions***
-
-built for myself, If your its to your taste, help yourself.
 
 ---
 
