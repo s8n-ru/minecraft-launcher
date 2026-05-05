@@ -22,9 +22,9 @@ built for myself, If your its to your taste, help yourself.
 
 <img alt="racked.ru launcher" src="docs/screenshots/launcher.png" width="55%">
 
-</div>
-
 [Changelog](CHANGELOG.md) · [Audits](docs/)
+
+</div>
 
 ---
 
