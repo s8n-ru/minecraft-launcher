@@ -77,32 +77,6 @@ First launch: pick a username, done.
 
 ---
 
-## Build from source
-
-```bash
-git clone https://github.com/s8n-ru/minecraft-launcher.git
-cd minecraft-launcher
-
-# Fedora 43
-sudo dnf install cmake gcc-c++ ninja-build extra-cmake-modules \
-    qt6-qtbase-devel qt6-qttools-devel qt6-qtsvg-devel qt6-qtnetworkauth-devel \
-    libarchive-devel cmark-devel qrencode-devel tomlplusplus
-
-# Ubuntu / Debian
-sudo apt install cmake g++ ninja-build extra-cmake-modules \
-    qt6-base-dev qt6-tools-dev qt6-svg-dev libqt6networkauth6-dev \
-    libarchive-dev libcmark-dev libqrencode-dev libtomlplusplus-dev gamemode-dev libvulkan-dev
-
-JAVA_HOME=/path/to/jdk-21 cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
-cmake --build build -j$(nproc)
-./build/prismlauncher
-```
-
-CI builds via [GitHub Actions](.github/workflows/build.yml) for all 3
-platforms on every tag.
-
----
-
 ## Trust
 
 Don't take my word on the privacy stuff. Read the audits:
@@ -134,3 +108,29 @@ GPL-3.0-only. Per-file copyright headers preserved.
 Based on [PrismLauncher](https://github.com/PrismLauncher/PrismLauncher)
 (GPL-3.0), itself a fork of [PolyMC](https://github.com/PolyMC/PolyMC)
 and [MultiMC](https://github.com/MultiMC/Launcher).
+
+## Build from source
+
+```bash
+git clone https://github.com/s8n-ru/minecraft-launcher.git
+cd minecraft-launcher
+
+# Fedora 43
+sudo dnf install cmake gcc-c++ ninja-build extra-cmake-modules \
+    qt6-qtbase-devel qt6-qttools-devel qt6-qtsvg-devel qt6-qtnetworkauth-devel \
+    libarchive-devel cmark-devel qrencode-devel tomlplusplus
+
+# Ubuntu / Debian
+sudo apt install cmake g++ ninja-build extra-cmake-modules \
+    qt6-base-dev qt6-tools-dev qt6-svg-dev libqt6networkauth6-dev \
+    libarchive-dev libcmark-dev libqrencode-dev libtomlplusplus-dev gamemode-dev libvulkan-dev
+
+JAVA_HOME=/path/to/jdk-21 cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j$(nproc)
+./build/prismlauncher
+```
+
+CI builds via [GitHub Actions](.github/workflows/build.yml) for all 3
+platforms on every tag.
+
+---
