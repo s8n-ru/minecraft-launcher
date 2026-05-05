@@ -86,3 +86,5 @@ sudo apt install cmake g++ ninja-build extra-cmake-modules \
 JAVA_HOME=/path/to/jdk-21 cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 cmake --build build -j$(nproc)
 ./build/prismlauncher
+
+---
