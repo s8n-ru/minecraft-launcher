@@ -28,34 +28,7 @@ built for myself, If your its to your taste, help yourself.
 
 ---
 
-## Download
-
-Pre-built binaries for Linux, Windows, macOS:
-
-→ [**Latest release**](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
-
-Linux:
-```bash
-tar xzf minecraft-launcher-linux-x64.tar.gz
-cd minecraft-launcher
-./bin/prismlauncher
-```
-
-Windows:
-```
-unzip minecraft-launcher-windows-x64.zip
-cd minecraft-launcher
-prismlauncher.exe
-```
-
-macOS (unsigned — right-click → Open → Open anyway):
-```bash
-unzip minecraft-launcher-macos-arm64.zip
-cd minecraft-launcher
-./prismlauncher.app/Contents/MacOS/prismlauncher
-```
-
-First launch: pick a username, done.
+launch > pick a username > play
 
 ---
 
