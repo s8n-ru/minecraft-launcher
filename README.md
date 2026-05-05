@@ -30,10 +30,6 @@ built for myself, If your its to your taste, help yourself.
 
 ---
 
-launch > pick a username > play
-
----
-
 ## Trust
 
 Don't take my word on the privacy stuff. Read the audits:
