@@ -13,6 +13,7 @@
 [![macOS](https://img.shields.io/badge/macOS-arm64-black?style=flat-square&logo=apple&logoColor=white)](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
 
 
+
 [Changelog](CHANGELOG.md) · [Audits](docs/)
 
 <img alt="racked.ru launcher" src="docs/screenshots/launcher.png" width="55%">
