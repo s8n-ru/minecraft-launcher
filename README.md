@@ -15,7 +15,7 @@
 
 ---
 
-An Opinionated Launcher  //  ***based opinions tho imo***
+An Opinionated Launcher  -  ***my opinions based tho imo***
 
 ~ Built for myself, If your its to your taste, help yourself.
 
