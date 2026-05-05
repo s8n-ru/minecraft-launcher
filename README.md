@@ -5,7 +5,6 @@
 [![Linux](https://img.shields.io/badge/Linux-x64-black?style=flat-square&logo=linux&logoColor=white)](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
 [![Windows](https://img.shields.io/badge/Windows-x64-black?style=flat-square&logo=windows&logoColor=white)](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
 [![macOS](https://img.shields.io/badge/macOS-arm64-black?style=flat-square&logo=apple&logoColor=white)](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
-[![License: GPL-3.0](https://img.shields.io/badge/License-GPL_3.0-black?style=flat-square)](LICENSE)
 
 [**Download**](https://github.com/s8n-ru/minecraft-launcher/releases/latest) · [Changelog](CHANGELOG.md) · [Audits](docs/)
 
