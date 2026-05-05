@@ -28,32 +28,6 @@ built for myself, If your its to your taste, help yourself.
 
 ---
 
-## What I changed vs upstream
-
-| | Stock launcher | This fork |
-|---|---|---|
-| Telemetry | Yes | none |
-| News fetch on launch | Yes | none |
-| UI | Ugly | Clean |
-| Weak hardware support | lmao | optimized |
-
-Full diff in [CHANGELOG.md](CHANGELOG.md). Per-endpoint network audit
-in [docs/NETWORK_AUDIT.md](docs/NETWORK_AUDIT.md).
-
----
-
-## What it does
-
-- Modrinth, CurseForge, FTB, ATLauncher, Technic instance imports
-- Fetches Java, no system install needed (hassle)
-- Portable: can launch from a usb stick for example
-- Offline mode: pick a username, play.
-- Pure black/white theme, no chrome accents
-
-That's it. Same scope as Prism, just narrower defaults.
-
----
-
 ## Download
 
 Pre-built binaries for Linux, Windows, macOS:
