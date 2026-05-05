@@ -5,7 +5,7 @@
 <br>
 
 <a href="https://github.com/s8n-ru/minecraft-launcher/releases/latest">
-  <img src="https://img.shields.io/badge/⬇_Download_latest-black?style=for-the-badge&logoColor=white&labelColor=black&color=white" height="60" alt="Download latest">
+  <img src="https://img.shields.io/badge/Download_latest-black?style=for-the-badge&logoColor=white&labelColor=black&color=white" height="60" alt="Download latest">
 </a>
 
 <br><br>
