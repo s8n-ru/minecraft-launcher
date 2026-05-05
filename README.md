@@ -15,7 +15,8 @@
 
 ---
 
-An Opinionated Launcher. Built for myself, If your its to your taste, help yourself.
+An Opinionated Launcher. (but the opinions are based) 
+~ Built for myself, If your its to your taste, help yourself.
 
 I wanted a launcher that just played Minecraft. 
 
