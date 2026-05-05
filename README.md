@@ -80,14 +80,4 @@ platforms on every tag.
 
 ---
 
-## License
-
-[![License: GPL-3.0](https://img.shields.io/badge/License-GPL_3.0-black?style=flat-square)](LICENSE)
-
-GPL-3.0-only. Per-file copyright headers preserved.
-
-Based on [PrismLauncher](https://github.com/PrismLauncher/PrismLauncher)
-(GPL-3.0), itself a fork of [PolyMC](https://github.com/PolyMC/PolyMC)
-and [MultiMC](https://github.com/MultiMC/Launcher).
-
----
+<sub>[GPL-3.0](LICENSE) · fork chain: [PrismLauncher](https://github.com/PrismLauncher/PrismLauncher) ← [PolyMC](https://github.com/PolyMC/PolyMC) ← [MultiMC](https://github.com/MultiMC/Launcher)</sub>
