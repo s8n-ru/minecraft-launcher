@@ -44,8 +44,7 @@ Don't take my word on the privacy stuff. Read the audits:
 
 ## Status
 
-Personal project. I use it daily, that's the only QA. No support
-guarantees. Bugs happen. Use at your own risk.
+Personal project. Bugs happen. Use at your own risk.
 
 PRs welcome but not promised to merge — this is opinionated by
 design.
