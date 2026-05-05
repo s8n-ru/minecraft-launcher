@@ -12,7 +12,7 @@
 [![Windows](https://img.shields.io/badge/Windows-x64-black?style=flat-square&logo=windows&logoColor=white)](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
 [![macOS](https://img.shields.io/badge/macOS-arm64-black?style=flat-square&logo=apple&logoColor=white)](https://github.com/s8n-ru/minecraft-launcher/releases/latest)
 
-</div>
+\\\
 
 [Changelog](CHANGELOG.md) · [Audits](docs/)
 
